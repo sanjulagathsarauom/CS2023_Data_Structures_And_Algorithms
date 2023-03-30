@@ -1,8 +1,11 @@
 #include <iostream>
 #include <algorithm>
+#include <chrono>
+#include <chrono>
 
 
 using namespace std;
+using namespace std::chrono;
   
 // A utility function to swap two elements
 void swap(int* a, int* b)
@@ -80,9 +83,46 @@ void printArr(int arr[], int n)
 // Driver code
 int main()
 {
-    int arr[] = { 4, 3, 5, 2, 1, 3, 2, 3 };
-    int n = sizeof(arr) / sizeof(*arr);
-    quickSortIterative(arr, 0, n - 1);
-    printArr(arr, n);
-    return 0;
+    cout << " "<<endl;
+ cout << " "<<endl;
+ cout << " "<<endl;
+ cout << " "<<endl;
+ int sz;
+ cout<<"Enter the size of array::";
+ cin>>sz;
+ int arr[sz];
+ for(int i=0;i<sz;i++)
+ arr[i]=rand()%100; //Generate number between 0 to 99
+
+
+
+
+ int arr_size = sizeof(arr) / sizeof(arr[0]);
+
+ //cout << "Given array is \n";
+ //printArr(arr, arr_size);
+
+ auto start = high_resolution_clock::now();
+
+ quickSortIterative(arr, 0, arr_size - 1);
+
+ auto stop = high_resolution_clock::now();
+ auto duration = duration_cast<microseconds>(stop - start);
+ cout << " "<<endl;
+
+ //cout << "\nSorted array is \n";
+ //printArr(arr, arr_size);
+ cout << " "<<endl;
+ cout << " "<<endl;
+ cout << "Time taken by function: "
+ << duration.count() << " microseconds" << endl;
+ cout << " "<<endl;
+ cout << " "<<endl;
+ cout << " "<<endl;
+ cout << " "<<endl;
+
+
+
+
+
 }
