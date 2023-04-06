@@ -1,5 +1,8 @@
 #include <iostream>
+#include <chrono>
+
 using namespace std;
+using namespace std::chrono;
 int stack[10], n=10, top=-1;
 
 
@@ -32,6 +35,10 @@ void display() {
 
 
 int main() { 
+
+    auto start = high_resolution_clock::now();
+
+
     push(8);
     push(10);
     push(5);
@@ -52,6 +59,17 @@ int main() {
     push(3);
     push(1);
     display();
+
+ 
+
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<microseconds>(stop - start);
+    cout << " "<<endl;
+    cout << " "<<endl;
+    cout << " "<<endl;
+    cout << "Time taken by function: "
+    << duration.count() << " microseconds" << endl;
    
     return 0;
 }
