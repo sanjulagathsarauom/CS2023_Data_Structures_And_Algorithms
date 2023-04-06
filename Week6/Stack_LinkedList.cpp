@@ -1,42 +1,50 @@
 #include <iostream>
 #include <chrono>
-
 using namespace std;
 using namespace std::chrono;
-int stack[10], n=10, top=-1;
 
+
+struct Node {
+   int data;
+   struct Node *next;
+};
+
+struct Node* top = NULL;
 
 void push(int val) {
-   if(top>=n-1)
-   cout<<"Stack Overflow"<<endl;
-   else {
-      top++;
-      stack[top]=val;
-   }
+   struct Node* newnode = (struct Node*) malloc(sizeof(struct Node));
+   newnode->data = val;
+   newnode->next = top;
+   top = newnode;
 }
-int pop() {
-   if(top<=-1)
+
+void pop() {
+   if(top==NULL)
    cout<<"Stack Underflow"<<endl;
    else {
-      top--;
-      return stack[top+1];
+      cout<<"The popped element is "<< top->data <<endl;
+      top = top->next;
    }
 }
 
 void display() {
-   if(top>=0) {
-      cout<<"Stack elements :";
-      for(int i=top; i>=0; i--)
-      cout<<stack[i]<<" ";
-      cout<<endl;
-   } else
-   cout<<"Stack is empty";
+   struct Node* ptr;
+   if(top==NULL)
+   cout<<"stack is empty";
+   else {
+      ptr = top;
+      cout<<"Stack elements are: ";
+      while (ptr != NULL) {
+         cout<< ptr->data <<" ";
+         ptr = ptr->next;
+      }
+   }
+   cout<<endl;
 }
 
+int main(){
 
-int main() { 
-
-    auto start = high_resolution_clock::now();
+auto start = high_resolution_clock::now();
 
 
     push(8);
@@ -70,7 +78,6 @@ int main() {
     cout << " "<<endl;
     cout << "Time taken by function: "
     << duration.count() << " microseconds" << endl;
-   
+
     return 0;
-    
 }
