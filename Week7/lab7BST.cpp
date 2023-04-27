@@ -28,7 +28,7 @@ struct node *insertNode(struct node *node, int key) {
         struct node *nodeFirst = new struct node;
         nodeFirst->key = key;
         return nodeFirst;
-    }
+    }                       
 
     if(node->key > key){
         node->left = insertNode(node->left,key);
@@ -41,27 +41,54 @@ struct node *insertNode(struct node *node, int key) {
 
 }
 
+
 // Deleting a node
 struct node *deleteNode(struct node *root, int key) {
+
+
+
+    if(key < root->key){
+        root->left = deleteNode(root->left,key);
+        return root;
+    }
+    else if(key > root->key){
+        root->right = deleteNode(root->right,key);
+        return root;
+    }
 
     // Base Case
     if(key == root->key && root->left == NULL && root->right == NULL){
         return NULL;
-    }
 
-    if(key < root->key){
-        if(root->left->key == key){
+    }
+    else if(key == root->key && root->left != NULL && root->right == NULL ){
+        cout<<"came";
+        root->key = root->left->key;
         root->left = root->left->left;
+        root->right = root->left->right;
+        cout<<"gone";
         return root;
-        }
-        else{
-            deleteNode(root->left,key);
-        }
+    }
+    else if(key == root->key && root->left == NULL && root->right != NULL){
+        root->key = root->right->key;
+        root->right = deleteNode(root->right,root->right->key);
+        //cout<<" Node deleted from left"<<endl;
+        return root;
+
+    }
+    else if(key == root->key && root->left != NULL && root->right != NULL){
+        root->key = root->right->key;
+        root->right = deleteNode(root->right,root->right->key);
+        //cout<<" Node deleted from right"<<endl;
+        return root;
+    }
+    else{
+        cout<<" Enter deletable Node key : Exit with Error of User Input"<<endl;
     }
 
 
-    return root;
- 
+exit(0);
+
 }
 
 // Driver code
