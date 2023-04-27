@@ -43,6 +43,24 @@ struct node *insertNode(struct node *node, int key) {
 
 // Deleting a node
 struct node *deleteNode(struct node *root, int key) {
+
+    // Base Case
+    if(key == root->key && root->left == NULL && root->right == NULL){
+        return NULL;
+    }
+
+    if(key < root->key){
+        if(root->left->key == key){
+        root->left = root->left->left;
+        return root;
+        }
+        else{
+            deleteNode(root->left,key);
+        }
+    }
+
+
+    return root;
  
 }
 
