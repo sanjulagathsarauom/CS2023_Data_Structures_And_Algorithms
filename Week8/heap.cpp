@@ -8,6 +8,7 @@ void heapify(int arr[], int n, int root)
   
    
 }
+//
   
 // implementing heap sort
 void heapSort(int arr[], int n)
