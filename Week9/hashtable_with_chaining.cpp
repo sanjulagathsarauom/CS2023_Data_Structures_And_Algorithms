@@ -50,6 +50,7 @@ struct HashTable{
             cout<<"Linked List reached MAX CAP!\n";
         }
     }
+    
     void print_hashtable(){
         for(int i=0;i<MAX_LENGTH;i++){
             cout<<"["<<i<<"]-->";
