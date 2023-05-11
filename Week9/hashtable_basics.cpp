@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 using namespace std;
-//
+
 
 struct HashTable{
     int MAX_LENGTH = 4;
@@ -27,23 +27,38 @@ struct HashTable{
         int sum = 0;
         int hash = 0;
 	//add your code below
-	
+
+        for(int i=0;i<int(user_name.size());i++){
+
+            sum += int(user_name[i]);
+
+        }
 	
 	
         hash = sum % MAX_LENGTH;
 
         return hash;
     }
+
+
     bool is_slot_empty(int hash){
         bool empty = password[hash].empty();
         return empty;
     }
+
+
     void insert(string user_name,string user_password){
         int hash;
         bool empty;
         hash = hashfunc(user_name);
         empty = is_slot_empty(hash);
 	//add an if condition to complete the code here
+        if(empty == 1){
+            password[hash] = user_password;
+        }
+        else{
+            cout<<"Error Writing to same slot";
+        }
         
 
     }
@@ -53,7 +68,12 @@ struct HashTable{
         hash = hashfunc(user_name);
         empty = is_slot_empty(hash);
 	//add an if condition to complete the code here
-	
+        if(empty == 0){
+            cout<<password[hash];
+        }
+        else{
+            cout<<"No password for this username";
+        }
 	
 	
     }
@@ -78,6 +98,9 @@ struct HashTable{
     }
 
 };
+
+
+
 
 int main(){
     HashTable * hashtbl = new HashTable;
