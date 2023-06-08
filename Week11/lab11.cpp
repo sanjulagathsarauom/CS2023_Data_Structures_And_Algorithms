@@ -2,10 +2,11 @@
 #include <vector>
 #include <queue>
 #include <map>
+#include <limits>
 
 using namespace std;
 
-void minimumCost(vector<vector<int>>& graph, int start) {
+void minimumCost(vector<vector<int> >& graph, int start) {
 
     int n = graph.size();
 
@@ -13,7 +14,7 @@ void minimumCost(vector<vector<int>>& graph, int start) {
     map<int, int> weights;
 
     vector<bool> visited(n, false);
-    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> pq;
+    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > pq;
     pq.push(make_pair(0, start));
     visited[start] = true;
 
@@ -31,7 +32,7 @@ void minimumCost(vector<vector<int>>& graph, int start) {
                     weights[v] = weight;
                 }
                 else {
-                    priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> updatedPairs;
+                    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > updatedPairs;
                     while (!pq.empty()) {
                         pair<int, int> current = pq.top();
                         pq.pop();
@@ -62,14 +63,12 @@ void minimumCost(vector<vector<int>>& graph, int start) {
 int main() {
 
     // Graph
-    vector<vector<int>> graph = {
-            {0, 3, 0, 0, 0, 1},
-            {3, 0, 2, 1, 10, 0},
-            {0, 2, 0, 3, 0, 5},
-            {0, 1, 3, 0, 5, 0},
-            {0, 10, 0, 5, 0, 4},
-            {1, 0, 5, 0, 4, 0}
-    };
+    vector<vector<int> > graph = { {0, 3, 0, 0, 0, 1},
+    {3, 0, 2, 1, 10, 0},
+    {0, 2, 0, 3, 0, 5},
+    {0, 1, 3, 0, 5, 0},
+    {0, 10, 0, 5, 0, 4},
+    {1, 0, 5, 0, 4, 0} };
 
     minimumCost(graph, 0);
 
